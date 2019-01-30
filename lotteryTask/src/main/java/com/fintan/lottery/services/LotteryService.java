@@ -46,7 +46,7 @@ public class LotteryService {
 
 	public List<Integer> generateLine() {
 		List<Integer> tempLine = new ArrayList<Integer>();
-		for (int j=0; j <2; j++) {
+		for (int j=0; j <3; j++) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0,3);
 			tempLine.add(randomNum);
 		}
@@ -54,6 +54,7 @@ public class LotteryService {
 	}
 	
 	public int generateScore(List<Integer> line){
+		System.out.println(line);
 		if (line.get(0)+line.get(1)+line.get(2)==2 ) {
 			return 10;
 		}
@@ -106,7 +107,7 @@ public class LotteryService {
 			return "Sorry your ticket can no longer be ammended.";
 		
 	}
-	public int getStatus(int id) {
+	public Integer getStatus(int id) {
 		Ticket ticket = getTicketById(id);
 		if (ticket.getStatusCheck()==false) {
 			ticket.setStatusCheck(true);
