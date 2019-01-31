@@ -1,3 +1,12 @@
+/**
+ * 
+ * @author Fintan O'Sullivan 
+ * 
+ * This Line object is created for the lines in Tickets.
+ *
+ */
+
+
 package com.fintan.lottery.domain;
 
 import java.util.List;

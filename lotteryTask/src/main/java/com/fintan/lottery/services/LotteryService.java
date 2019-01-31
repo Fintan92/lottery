@@ -1,3 +1,11 @@
+/**
+ * 
+ * @author Fintan O'Sullivan 
+ * 
+ * This is the service layer. It contains all the appropriate methods as specified by the Task outline.
+ *
+ */
+
 package com.fintan.lottery.services;
 
 import java.util.ArrayList;
@@ -14,7 +22,7 @@ public class LotteryService {
 	private static List<Ticket> ticketList = new ArrayList<Ticket>();
 	private static int id = 0;
 
-	
+	//creates a ticket, adds it to the ticket list and returns the ticket.
 	public Ticket createTicket(int numLines) {
 		List<Line> lineList = new ArrayList<Line>();
 		int ticketScore = 0;
@@ -34,7 +42,7 @@ public class LotteryService {
 		ticketList.add(ticket);
 		return ticket;
 	}
-	
+	//sorts the lines on the ticket into ascending order by line score.
 	public List<Line> sortLines(List<Line> lineList) {
 		Collections.sort(lineList,new Comparator<Line>() {
 			public int compare(Line l1, Line l2) {
@@ -43,7 +51,7 @@ public class LotteryService {
 		});
 		return lineList;
 	}
-
+	//generates a random line of 3 integers in range 0-2.
 	public List<Integer> generateLine() {
 		List<Integer> tempLine = new ArrayList<Integer>();
 		for (int j=0; j <3; j++) {
@@ -52,9 +60,8 @@ public class LotteryService {
 		}
 		return tempLine;
 	}
-	
+	//generates a score of a given line. Scoring is based off specifiaciton of task outline.
 	public int generateScore(List<Integer> line){
-		System.out.println(line);
 		if (line.get(0)+line.get(1)+line.get(2)==2 ) {
 			return 10;
 		}
@@ -70,11 +77,11 @@ public class LotteryService {
 			
 	
 	}
-	
+	//returns a list of all existing tickets created.
 	public List<Ticket> getTicketList() {
 		return ticketList;
 	}
-
+	//returns a ticket from the ticket list based on ticket Id
 	public Ticket getTicketById(int id) {
 		for (Iterator<Ticket> iter = ticketList.iterator(); iter.hasNext(); ) {
 			Ticket ticket = iter.next();
@@ -85,6 +92,8 @@ public class LotteryService {
 		return null;
 		
 	}
+	//adds a specified amount of lines to an existing ticket selected by ticket id. Also alters status
+	//so same ticket cannot be altered twice.
 	public String amendTicketById(int id, int numLines) {
 		/*check if false, add lines, else return error message*/
 		Ticket ticket = getTicketById(id);
@@ -107,7 +116,8 @@ public class LotteryService {
 			return "Sorry your ticket can no longer be ammended.";
 		
 	}
-	public Integer getStatus(int id) {
+	//changes the status check so it cannot altered after checking, returns total score of ticket.
+	public int getStatus(int id) {
 		Ticket ticket = getTicketById(id);
 		if (ticket.getStatusCheck()==false) {
 			ticket.setStatusCheck(true);

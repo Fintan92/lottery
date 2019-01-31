@@ -1,3 +1,11 @@
+/**
+ * 
+ * @author Fintan O'Sullivan 
+ * 
+ * This is the ticket object that is being requested.
+ *
+ */
+
 package com.fintan.lottery.domain;
 
 import java.util.ArrayList;
@@ -15,10 +23,11 @@ public class Ticket {
 		this.ticketId = ticketId;
 		this.numLines = numLines;
 		this.lines = lines;
-		this.setTotalScore(totalScore);
+		this.totalScore = totalScore;
 	}
 	
-	
+
+
 	public List<Line> getLines() {
 		return lines;
 	}
